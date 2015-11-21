@@ -476,6 +476,7 @@
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSDictionary *validationInfo = weakSelf.validationBlock(weakSelf, weakSelf.rawText);
+        [NSThread sleepForTimeInterval:0.1]; // Some wait is required for the animation to fire if you are not dismissing the keyboard
         dispatch_async(dispatch_get_main_queue(), ^{
             [indicator stopAnimating];
             [weakSelf.rightView removeFromSuperview];
